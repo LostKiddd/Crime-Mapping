@@ -1,0 +1,49 @@
+body {
+    background-color: #161b21;
+    font-family: "Inter";
+    color: #e8e3e1; 
+}
+
+.navbar-text {
+    font-family: 'Poppins';
+    color: #e8e3e1;
+}
+
+.nav-link {
+    color: #e8e3e1;
+}
+
+.nav-item .nav-link.active {
+    font-family: "Inter";
+    color: #e8e3e1;
+    font-weight: bold;
+}
+
+.navbar a.active {
+    border-bottom: 3px solid #e8e3e1;  
+}
+
+.nav-item a:hover {
+     color: #fff 
+     !important; 
+}
+
+.cbox-value {
+    margin-left: 2%;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.footer { 
+    position: static;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 5%;
+    background: #1d232c;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
