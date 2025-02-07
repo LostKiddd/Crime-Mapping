@@ -275,12 +275,17 @@ $conn->close();
     }
 
     select {
-      background-color: var(--card-bg);
+      background-color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 0.375rem;
-      color: var(--primary-text);
+      color: #000000;
       font-size: 0.875rem;
       padding: 0.5rem;
+    }
+
+    select option {
+      background-color: #ffffff;
+      color: #000000;
     }
 
     .btn-primary {
@@ -313,6 +318,8 @@ $conn->close();
       list-style: none;
       padding: 1rem;
       margin: 0;
+      height: 300px;
+      overflow-y: auto;
     }
 
     #brgyList li {
@@ -346,6 +353,13 @@ $conn->close();
     .col-lg-5, .col-lg-7 {
       display: flex;
       flex-direction: column;
+    }
+
+    .container {
+      padding-top: 2rem;
+      padding-bottom: Here's the continuation of the text stream from the cut-off point:
+
+column;
     }
 
     .container {
@@ -397,7 +411,7 @@ $conn->close();
             <a class="nav-link" href="mapview.html">Map View</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Analytics</a>
+            <a class="nav-link active" href="#" style="color: var(--accent);">Analytics</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="forecast.html">Forecasts</a>
@@ -570,7 +584,9 @@ $conn->close();
                 <option value="<?= htmlspecialchars($barangay) ?>"><?= htmlspecialchars($barangay) ?></option>
               <?php endforeach; ?>
             </select>
-            <canvas id="offensePerBrgyChart"></canvas>
+            <div class="chart-container">
+              <canvas id="offensePerBrgyChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -604,6 +620,27 @@ $conn->close();
     Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
     Chart.defaults.font.family = 'Inter, sans-serif';
 
+    const chartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        y: { 
+          beginAtZero: true,
+          grid: {
+            color: 'rgba(255, 255, 255, 0.1)'
+          }
+        },
+        x: {
+          grid: {
+            color: 'rgba(255, 255, 255, 0.1)'
+          }
+        }
+      }
+    };
+
     // Daily Trend
     new Chart(document.getElementById('dailyTrend').getContext('2d'), {
       type: 'line',
@@ -618,26 +655,7 @@ $conn->close();
           fill: true
         }]
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false }
-        },
-        scales: {
-          y: { 
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            }
-          },
-          x: {
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            }
-          }
-        }
-      }
+      options: chartOptions
     });
 
     // Weekly Trend
@@ -652,26 +670,7 @@ $conn->close();
           borderRadius: 4
         }]
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false }
-        },
-        scales: {
-          y: { 
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            }
-          },
-          x: {
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            }
-          }
-        }
-      }
+      options: chartOptions
     });
 
     // Monthly Trend
@@ -688,26 +687,7 @@ $conn->close();
           fill: true
         }]
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false }
-        },
-        scales: {
-          y: { 
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            }
-          },
-          x: {
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            }
-          }
-        }
-      }
+      options: chartOptions
     });
 
     // Incident Chart
@@ -723,9 +703,8 @@ $conn->close();
         }]
       },
       options: {
+        ...chartOptions,
         indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: false,
         plugins: {
           legend: { display: false }
         },
@@ -820,6 +799,7 @@ $conn->close();
           }]
         },
         options: {
+          ...chartOptions,
           indexAxis: 'y',
           responsive: true,
           maintainAspectRatio: false,
