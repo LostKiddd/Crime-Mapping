@@ -249,11 +249,13 @@ $conn->close();
       border-radius: 0.5rem;
       margin-bottom: 1rem;
       height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .card-body {
       padding: 1.25rem;
-      height: 100%;
+      flex: 1;
       display: flex;
       flex-direction: column;
     }
@@ -298,6 +300,7 @@ $conn->close();
       height: 300px !important;
       width: 100%;
       margin: 0 auto;
+      padding: 1rem;
     }
 
     canvas {
@@ -308,7 +311,8 @@ $conn->close();
       color: var(--primary-text);
       font-size: 0.875rem;
       list-style: none;
-      padding: 0;
+      padding: 1rem;
+      margin: 0;
     }
 
     #brgyList li {
@@ -325,6 +329,35 @@ $conn->close();
       bottom: 0;
       width: 100%;
       margin-top: 2rem;
+    }
+
+    #crimeAgainst {
+      height: 300px !important;
+      width: 100% !important;
+      margin: 0 auto;
+    }
+
+    .row {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .col-lg-5, .col-lg-7 {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .card-title {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--secondary-text);
     }
 
     @media print {
@@ -359,10 +392,6 @@ $conn->close();
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" href="#">Overview</a>
-          </li>
-          <li class="nav-itemHere's the continuation from the cut-off point:
-
-link" href="#">Overview</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="mapview.html">Map View</a>
@@ -737,7 +766,16 @@ link" href="#">Overview</a>
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            position: 'bottom'
+            position: 'bottom',
+            labels: {
+              padding: 20
+            }
+          }
+        },
+        layout: {
+          padding: {
+            top: 20,
+            bottom: 20
           }
         }
       }
